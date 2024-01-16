@@ -16,3 +16,6 @@ CONVERT_TO=promicro_rp2040
 
 # Bootloader selection
 BOOTLOADER=rp2040
+
+# Enable encoder config via keymap
+ENCODER_MAP_ENABLE = yes

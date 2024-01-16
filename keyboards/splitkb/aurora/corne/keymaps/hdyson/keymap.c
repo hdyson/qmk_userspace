@@ -60,62 +60,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	)
 };
 
-#ifdef ENCODER_ENABLE
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) {
-        return false;
-    }
-    // 0 is left-half encoder,
-    // 1 is right-half encoder
-    if (index == 0) {
-        if (layer_state_is(_MOUSE)) {
-            // Etch a sketch mouse
-            if (clockwise) {
-                tap_code(KC_MS_U);
-            } else {
-               tap_code(KC_MS_D);
-            }
-        } else if (layer_state_is(_MEDIA)) {
-            // Volume
-            if (clockwise) {
-	       rgb_matrix_step();
-            } else {
-	       rgb_matrix_step_reverse();
-            }
-        } else {
-            // Volume
-            if (clockwise) {
-                tap_code(KC_VOLU);
-            } else {
-               tap_code(KC_VOLD);
-            }
-        }
-    } else if (index == 1) {
-        if (layer_state_is(_MOUSE)) {
-            // Etch a sketch mouse
-            if (clockwise) {
-                tap_code(KC_MS_R);
-            } else {
-               tap_code(KC_MS_L);
-            }
-        } else if (layer_state_is(_MEDIA)) {
-            // Volume
-            if (clockwise) {
-                rgb_matrix_increase_hue();
-            } else {
-                rgb_matrix_decrease_hue();
-            }
-        } else {
-            // Page up/Page down
-            if (clockwise) {
-                tap_code(KC_PGDN);
-            } else {
-                tap_code(KC_PGUP);
-            }
-	}
-    }
-    return true; 
-    // If you return true, this will allow the keyboard level code to run, as well. 
-    //Returning false will override the keyboard level code. Depending on how the keyboard level function is set up.
-}
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [_QWERTY] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD), ENCODER_CCW_CW(KC_PGDN, KC_PGUP)},
+    [_MOVEMENT] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD), ENCODER_CCW_CW(KC_PGDN, KC_PGUP)}, 
+    [_MEDIA] = { ENCODER_CCW_CW(RGB_MODE_FORWARD, RGB_MODE_REVERSE), ENCODER_CCW_CW(RGB_HUI, RGB_HUD)},
+    [_MOUSE] = { ENCODER_CCW_CW(KC_MS_U, KC_MS_D), ENCODER_CCW_CW(KC_MS_R, KC_MS_L) },
+    [_NUMBERS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD), ENCODER_CCW_CW(KC_PGDN, KC_PGUP)},
+    [_SYMBOLS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD), ENCODER_CCW_CW(KC_PGDN, KC_PGUP)},
+    [_FKEYS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD), ENCODER_CCW_CW(KC_PGDN, KC_PGUP)},
+};
 #endif
