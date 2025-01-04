@@ -19,3 +19,6 @@ BOOTLOADER=rp2040
 
 # Enable encoder config via keymap
 ENCODER_MAP_ENABLE = yes
+
+# Enable locking a layer e.g. numbers or symbols
+LAYER_LOCK_ENABLE = yes
