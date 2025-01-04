@@ -9,3 +9,7 @@
 *.hex
 *.bin
 *.uf2
+
+# VS code junk
+compile_commands.json
+.vscode/tasks.json
