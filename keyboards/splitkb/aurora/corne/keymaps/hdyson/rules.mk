@@ -12,7 +12,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Convert from Elite-C to standard RP2040
-CONVERT_TO=promicro_rp2040
+CONVERT_TO=elite_pi
 
 # Bootloader selection
 BOOTLOADER=rp2040
